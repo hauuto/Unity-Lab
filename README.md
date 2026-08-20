@@ -26,4 +26,4 @@ Assets/
 ```
 
 ## Danh sách các bài lab
-[[Lab 01](Assets/Lab_01)](https://github.com/hauuto/Unity-Lab/tree/09c6088e79cb9c99d4e101429293985735ded32e/Assets/Lab_01)
+[Lab 01](https://github.com/hauuto/Unity-Lab/tree/09c6088e79cb9c99d4e101429293985735ded32e/Assets/Lab_01)
