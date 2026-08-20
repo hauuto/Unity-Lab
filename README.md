@@ -1,6 +1,6 @@
 # 🎮 Unity Labs Repository
 
-Repository này lưu trữ toàn bộ các bài thực hành (Lab) môn học CNM (Học kỳ 1, Năm học 2026 - 2027) tại trường Đại học Công nghiệp TP.HCM (IUH). 
+Repository này lưu trữ toàn bộ các bài thực hành  môn học Công nghệ mới trong phát triển ứng dụng CNTT.
 
 Project được thiết lập theo kiến trúc **Monorepo** (1 Project - Nhiều Labs) để tối ưu hóa không gian lưu trữ và dễ dàng quản lý version control.
 
