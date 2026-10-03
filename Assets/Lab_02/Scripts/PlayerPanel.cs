@@ -88,6 +88,27 @@ public class PlayerPanel : MonoBehaviour
 
     public void SetScore(int score) => scoreText.text = score.ToString();
 
+    /// <summary>Nháy màu ô trong của nút (xanh = đúng, đỏ = sai) rồi trả về màu cũ.
+    /// Dùng unscaled time để vẫn chạy khi đang Pause.</summary>
+    public void FlashButton(int index, Color color, float seconds = 0.35f)
+    {
+        if (index < 0 || index >= answerButtons.Length) return;
+        Transform inner = answerButtons[index].transform.Find("Inner");
+        if (inner == null) return;
+        StartCoroutine(FlashRoutine(inner.GetComponent<Image>(), color, seconds));
+    }
+
+    System.Collections.IEnumerator FlashRoutine(Image img, Color color, float seconds)
+    {
+        Color old = InnerColor;
+        img.color = color;
+        yield return new WaitForSecondsRealtime(seconds);
+        img.color = old;
+    }
+
+    // Màu gốc ô trong của nút (#7A6A5D), giữ cố định để nháy liên tiếp không bị lưu nhầm màu đỏ
+    static readonly Color InnerColor = new Color32(0x7A, 0x6A, 0x5D, 255);
+
     /// <summary>Bật/tắt cả 3 nút. Tắt thì Button tự đổi sang Disabled Color (xám mờ).</summary>
     public void SetInteractable(bool value)
     {

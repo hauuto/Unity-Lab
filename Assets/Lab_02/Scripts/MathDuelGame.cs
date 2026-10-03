@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum MathOp { Add, Subtract, Multiply, Divide }
+public enum MathOp { Add, Subtract, Multiply, Divide, Function }
 
 /// <summary>
 /// Luật chơi Math Duel. Gắn vào object GameManager.
@@ -19,6 +19,9 @@ public class MathDuelGame : MonoBehaviour
 
     [Header("Cấu hình ván (CP7 sẽ lấy từ MainScreen)")]
     [SerializeField] MathOp operation = MathOp.Add;
+
+    [Tooltip("Biểu thức f(x) cho chế độ Function. Fig1 mặc định 2*x+3")]
+    [SerializeField] string functionExpr = "2*x+3";
 
     [Tooltip("Số lớn nhất trong phép tính. Fig1 có 3 mức: 10, 20, 50")]
     [SerializeField, Min(2)] int maxNumber = 50;
@@ -46,6 +49,10 @@ public class MathDuelGame : MonoBehaviour
     const string TextWin = "WIN!";
     const string TextLose = "LOSE";
 
+    // Màu phản hồi: đỏ #D9483B khi sai, xanh lá #3FA34D khi đúng
+    static readonly Color WrongColor = new Color32(0xD9, 0x48, 0x3B, 255);
+    static readonly Color RightColor = new Color32(0x3F, 0xA3, 0x4D, 255);
+
     int score1, score2;
     int correctIndex;
     int[] options;
@@ -55,6 +62,16 @@ public class MathDuelGame : MonoBehaviour
 
     void Awake()
     {
+        // Vào từ MainScreen thì lấy cấu hình người chơi chọn, mở thẳng scene thì giữ giá trị Inspector
+        if (GameSettings.HasValue)
+        {
+            operation = GameSettings.Operation;
+            maxNumber = GameSettings.MaxNumber;
+            targetScore = GameSettings.TargetScore;
+            secondsPerQuestion = GameSettings.SecondsPerQuestion;
+            functionExpr = GameSettings.FunctionExpr;
+        }
+
         player1.AnswerClicked += OnAnswerClicked;
         player2.AnswerClicked += OnAnswerClicked;
         pauseButton.onClick.AddListener(OnPausePressed);
@@ -108,10 +125,12 @@ public class MathDuelGame : MonoBehaviour
 
         if (index != correctIndex)
         {
+            who.FlashButton(index, WrongColor);
             StartCoroutine(LockPlayer(who));
             return;
         }
 
+        who.FlashButton(index, RightColor);
         if (who == player1) player1.SetScore(++score1);
         else player2.SetScore(++score2);
 
@@ -199,6 +218,19 @@ public class MathDuelGame : MonoBehaviour
                     a = b * q;
                     text = $"{a} ÷ {b}";
                     return q;
+                }
+
+            case MathOp.Function:
+                {
+                    // Hỏi f(a) với a ngẫu nhiên trong phạm vi số. Biểu thức lỗi thì quay về 2*x+3
+                    a = Random.Range(0, maxNumber + 1);
+                    if (!FunctionParser.TryEvaluate(functionExpr, a, out int fa))
+                    {
+                        functionExpr = "2*x+3";
+                        FunctionParser.TryEvaluate(functionExpr, a, out fa);
+                    }
+                    text = $"f({a}) = ?";
+                    return fa;
                 }
 
             default: // Add
