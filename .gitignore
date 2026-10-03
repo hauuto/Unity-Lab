@@ -17,3 +17,8 @@
 *.docx
 *.docx.meta
 ~$*.docx
+
+# Blender: bỏ file sao lưu tự động và file .blend trong thư mục nộp bài
+# (giữ Blender/*.blend gốc và mọi .fbx trong Assets vì scene/prefab tham chiếu tới)
+*.blend1
+Submit/**/*.blend
