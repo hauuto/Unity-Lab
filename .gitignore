@@ -10,3 +10,10 @@
 *.sln
 *.pidb.meta
 *.pdb.meta
+
+# File nộp bài (package Unity + báo cáo Word): không đưa lên Git
+*.unitypackage
+*.unitypackage.meta
+*.docx
+*.docx.meta
+~$*.docx
