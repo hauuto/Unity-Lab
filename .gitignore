@@ -22,3 +22,29 @@
 # (giữ Blender/*.blend gốc và mọi .fbx trong Assets vì scene/prefab tham chiếu tới)
 *.blend1
 Submit/**/*.blend
+
+# Android build cache
+/.utmp/
+
+# Unity crash-recovery scenes
+/Assets/_Recovery/
+/Assets/_Recovery.meta
+
+# Model > 100 MB (GitHub limit)
+/Assets/Jacquard/Models/yolo26x.onnx
+/Assets/Jacquard/Models/yolo26x.onnx.meta
+
+# Secrets cục bộ (key Adafruit...)
+/.secrets/
+
+# File sinh tự động / cấu hình công cụ cá nhân
+*.slnx
+*.log
+*.pyc
+__pycache__/
+/.agents/
+/_to_delete/
+
+# Ảnh tạm của Claude
+Claude outputs/
+Claude outputs.meta
