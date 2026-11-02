@@ -66,3 +66,7 @@ Claude outputs.meta
 /Assets/StreamingAssets/Jacquard_Combined.meta
 /Assets/StreamingAssets/Jacquard_Demo/
 /Assets/StreamingAssets/Jacquard_Demo.meta
+
+# Ngoai le: model can de chay Jacquard, Lab 09, Lab 10
+!/Assets/Jacquard/Models/yolo26n.onnx
+!/Assets/Jacquard/Models/yolo26n.onnx.meta
