@@ -52,3 +52,17 @@ Claude outputs.meta
 # Model ONNX: tai rieng, khong dua len Git
 *.onnx
 *.onnx.meta
+
+# Chi commit file can de chay: anh bao cao, bai nop, file nguon
+/Assets/Report/
+/Assets/Report.meta
+/Assets/Lab_02/Screenshots/
+/Assets/Lab_02/Screenshots.meta
+/Submit/
+/Blender/
+/Assets/StreamingAssets/Jacquard_90/
+/Assets/StreamingAssets/Jacquard_90.meta
+/Assets/StreamingAssets/Jacquard_Combined/
+/Assets/StreamingAssets/Jacquard_Combined.meta
+/Assets/StreamingAssets/Jacquard_Demo/
+/Assets/StreamingAssets/Jacquard_Demo.meta
