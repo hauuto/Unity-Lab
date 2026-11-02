@@ -1,6 +1,9 @@
 services:
   api:
-    build: .
+    build:
+      context: .
+      additional_contexts:
+        model: ../Assets/Jacquard/Models
     restart: unless-stopped
   nginx:
     image: nginx:1.27-alpine

@@ -48,3 +48,7 @@ __pycache__/
 # Ảnh tạm của Claude
 Claude outputs/
 Claude outputs.meta
+
+# Model ONNX: tai rieng, khong dua len Git
+*.onnx
+*.onnx.meta
